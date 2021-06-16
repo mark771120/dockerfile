@@ -1,4 +1,14 @@
 # SSH Server
 # Version 1.0.0
 
-FROM ubuntu 21.04
+FROM ubuntu 20.04
+MAINTAINER Mark Lai <mark771120@gmail.com>
+
+RUN apt-get update && apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+RUN echo 'root:MATH180' | chpasswd
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/.ssh/sshd_config
+
+EXPOSE 22
+
+CMD ["/usr/sbin/
